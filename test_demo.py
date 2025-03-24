@@ -71,18 +71,13 @@ def select_dataset(data_dir, mode):
         
         
     elif mode == "hybrid_test":
-        # path = [
-        #     (
-        #         p.replace("_HR", "_LR").replace(".png", "noise50.png"),
-        #         p
-        #     ) for p in sorted(glob.glob(os.path.join(data_dir, "LSDIR_DIV2K_test_HR/*.png")))
-        # ]
         path = [
             (
-                os.path.join(data_dir, f"LSDIR_DIV2K_Test_Sigma50/{i:04}.png"),
-                os.path.join(data_dir, f"LSDIR_DIV2K_Test_Sigma50/{i:04}.png")
-            ) for i in range(901, 1001)
+                p.replace("_HR", "_LR").replace(".png", "noise50.png"),
+                p
+            ) for p in sorted(glob.glob(os.path.join(data_dir, "LSDIR_DIV2K_test_HR/*.png")))
         ]
+       
     else:
         raise NotImplementedError(f"{mode} is not implemented in select_dataset")
     return path
